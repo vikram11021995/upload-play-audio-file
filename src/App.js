@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import AudioUploader from './components/AudioUploader';
-import AudioFile from './components/AudioFile';
-import Playlist from './components/Playlist';
+import React, { useState, useEffect, useRef } from "react";
+import AudioUploader from "./components/AudioUploader";
+import AudioFile from "./components/AudioFile";
+import Playlist from "./components/Playlist";
 
 const App = () => {
   const [files, setFiles] = useState([]);
@@ -17,20 +17,21 @@ const App = () => {
   };
 
   const handleEnded = () => {
-    setCurrentFileIndex((prevIndex) =>
-      prevIndex === files.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentFileIndex((prevIndex) => (prevIndex === files.length - 1 ? 0 : prevIndex + 1));
   };
 
   useEffect(() => {
-    window.addEventListener('beforeunload', () => {
-      localStorage.setItem('audioPlayerState', JSON.stringify({
-        currentFileIndex,
-        currentTime: audioRef.current?.currentTime || 0
-      }));
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem(
+        "audioPlayerState",
+        JSON.stringify({
+          currentFileIndex,
+          currentTime: audioRef.current?.currentTime || 0,
+        })
+      );
     });
 
-    const storedState = localStorage.getItem('audioPlayerState');
+    const storedState = localStorage.getItem("audioPlayerState");
     if (storedState) {
       const { currentFileIndex, currentTime } = JSON.parse(storedState);
       setCurrentFileIndex(currentFileIndex);
@@ -53,11 +54,7 @@ const App = () => {
             onEnded={handleEnded}
             ref={audioRef}
           />
-          <Playlist
-            files={files}
-            currentIndex={currentFileIndex}
-            onItemClick={handleItemClick}
-          />
+          <Playlist files={files} currentIndex={currentFileIndex} onItemClick={handleItemClick} />
         </>
       )}
     </div>
@@ -65,5 +62,3 @@ const App = () => {
 };
 
 export default App;
-
-

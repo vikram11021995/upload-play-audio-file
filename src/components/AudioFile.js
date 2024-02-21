@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from "react";
 
 const AudioFile = ({ src, onEnded }) => {
   const audioRef = useRef();
@@ -8,10 +8,10 @@ const AudioFile = ({ src, onEnded }) => {
     audio.src = src;
     audio.play();
 
-    audio.addEventListener('ended', onEnded);
+    audio.addEventListener("ended", onEnded);
 
     return () => {
-      audio.removeEventListener('ended', onEnded);
+      audio.removeEventListener("ended", onEnded);
     };
   }, [src, onEnded]);
 
@@ -19,4 +19,3 @@ const AudioFile = ({ src, onEnded }) => {
 };
 
 export default AudioFile;
-

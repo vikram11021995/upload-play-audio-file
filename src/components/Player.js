@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 const Player = ({ src, onEnded }) => {
   const audioRef = useRef();
@@ -10,23 +10,23 @@ const Player = ({ src, onEnded }) => {
     const handleCanPlayThrough = () => {
       setIsLoaded(true);
       audio.play().catch((error) => {
-        console.error('Failed to play audio:', error);
+        console.error("Failed to play audio:", error);
       });
     };
 
-    audio.addEventListener('canplaythrough', handleCanPlayThrough);
+    audio.addEventListener("canplaythrough", handleCanPlayThrough);
 
     return () => {
-      audio.removeEventListener('canplaythrough', handleCanPlayThrough);
+      audio.removeEventListener("canplaythrough", handleCanPlayThrough);
     };
   }, [src]);
 
   useEffect(() => {
     const audio = audioRef.current;
-    audio.addEventListener('ended', onEnded);
+    audio.addEventListener("ended", onEnded);
 
     return () => {
-      audio.removeEventListener('ended', onEnded);
+      audio.removeEventListener("ended", onEnded);
     };
   }, [onEnded]);
 
@@ -34,6 +34,3 @@ const Player = ({ src, onEnded }) => {
 };
 
 export default Player;
-
-
-

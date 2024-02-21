@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Playlist = ({ files, currentIndex, onItemClick }) => {
   return (
@@ -6,7 +6,7 @@ const Playlist = ({ files, currentIndex, onItemClick }) => {
       {files.length > 0 &&
         files.map((file, index) => (
           <li key={index} onClick={() => onItemClick(index)}>
-            {index === currentIndex ? '▶ ' : ''} {file.name}
+            {index === currentIndex ? "▶ " : ""} {file.name}
           </li>
         ))}
     </ul>
@@ -14,5 +14,3 @@ const Playlist = ({ files, currentIndex, onItemClick }) => {
 };
 
 export default Playlist;
-
-
